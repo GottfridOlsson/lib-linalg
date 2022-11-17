@@ -196,3 +196,51 @@ double distance_between_vectors(double *v1,
 	return dist;
 }
 
+
+/* filepath is including the filename
+ header is in format: header = "header 1, header 2, [...], header N"
+ for N columns of data in array */
+void print_matrix_to_file(char* filepath, char* header, double** matrix,
+					  	  size_t rows, size_t cols){
+	FILE* file = fopen(filepath, "w");
+	fprintf(file, "%s\n", header);
+	
+	for(int row_i = 0; row_i < rows; row_i++){
+		for(int col_j = 0; col_j < cols; col_j++){
+			if(col_j != cols - 1){
+				fprintf(file, "%.8f, ", matrix[row_i][col_j]);
+			}else{
+				fprintf(file, "%.8f\n", matrix[row_i][col_j]);
+			}
+		}
+	}
+	
+	fclose(file);
+	printf("Sucessfully printed data to file: %s\n", filepath);
+}
+
+
+void print_vector_to_file(char* filepath, char* header, double* vector,
+						    size_t size){
+	FILE* file = fopen(filepath, "w");
+	fprintf(file, "%s\n", header);
+	for(int index = 0; index < size; index++){
+		fprintf(file, "%.8f\n", vector[index]);
+	}
+
+	fclose(file);
+	printf("Sucessfully printed data to file: %s\n", filepath);
+}
+
+
+double* create_linspace(double start, double end, int num_points){
+
+	double* linspace = create_vector(num_points);
+	
+	for(int i = 0; i < num_points; i++){
+		linspace[i] = i * (end-start)/(num_points-1) + start;
+	}
+
+	return linspace;	
+}
+

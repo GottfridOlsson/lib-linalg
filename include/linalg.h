@@ -120,3 +120,15 @@ distance_between_vectors(
 
 void scale_vector_by_factor(double* v, double scale_factor, unsigned int len);
 
+
+
+void print_matrix_to_file(char* filepath, char* header, double** matrix,
+							 size_t rows, size_t cols);
+
+
+void print_vector_to_file(char* filepath, char* header, double* vector,
+					  	  size_t size);
+
+double* create_linspace(double start, double end, int num_points);
+
+
