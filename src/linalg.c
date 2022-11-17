@@ -1,3 +1,13 @@
+/*====================================================*/
+//     Project: LIBRARIES IN C
+//        File: linalg.c
+//      Author: VIKTOR LILJA, GOTTFRID OLSSON
+//     Created: 2022-11-15
+//     Updated: 2022-11-17
+//       About: Contains functions used in linear
+//				algebra. Vectors, matrices and such.
+/*====================================================*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -5,40 +15,22 @@
 #include "linalg.h"
 
 
-void
-elementwise_addition(
-		     double *res,
-		     double *v1,
-		     double *v2,
-		     unsigned int len
-	            )
-{
+void elementwise_addition(double *res,double *v1,double *v2,unsigned int len){
 	for(int i = 0; i < len; i++){
 		res[i] = v1[i] + v2[i]; 
 	}
 }
 
 
-void
-elementwise_multiplication(
-			   double *res,
-			   double *v1,
-			   double *v2,
-			   unsigned int len
-	                  )
-{
+void elementwise_multiplication(double *res,double *v1,
+								double *v2,unsigned int len){
 	for(int i = 0; i < len; i++){
 		res[i] = v1[i] * v2[i]; 
 	}
 }
  
 
-double dot_product(
-	    double *v1,
-	    double *v2,
-	    unsigned int len
-	   )
-{
+double dot_product(double *v1,double *v2,unsigned int len){
 	double sum = 0;
 	for(int i = 0; i < len; i++){
 		sum += v1[i] * v2[i]; 
@@ -59,6 +51,7 @@ void destroy_vector(double* vector){
 	free(vector);
 }
 
+
 double** create_matrix(unsigned int rows, unsigned int cols ){
 
 	double** mat = malloc(sizeof(double*) * rows);
@@ -73,9 +66,7 @@ double** create_matrix(unsigned int rows, unsigned int cols ){
 }
 
 
-
 void destroy_matrix(double **matrix,  unsigned int rows){
-
 	for(int i = 0; i < rows; i++){
 		free(matrix[i]);
 	}
@@ -86,17 +77,12 @@ void destroy_matrix(double **matrix,  unsigned int rows){
 // mat1 is shape m times n
 // mat2 is shape n times p
 // result is shape m times p
-void matrix_multiplication(
-		      double **result,
-		      double **mat1,
-		      double **mat2,
-		      unsigned int m,
-		      unsigned int n,
-		      unsigned int p ){
+void matrix_multiplication(double **result,double **mat1,double **mat2,
+		      unsigned int m,unsigned int n,unsigned int p){
 
 	for(int i = 0; i < m; i++){
 		for(int j = 0; j < p; j++){
-			
+
 			result[i][j] = 0;
 
 			for(int k = 0; k < n; k++){
@@ -108,12 +94,8 @@ void matrix_multiplication(
 
 
 // all matrices have size m times n
-void elementwise_matrix_multiplication(
-			double **result, 
-			double **mat1, 
-			double **mat2, 
-			unsigned int m,
-		        unsigned int n){
+void elementwise_matrix_multiplication(double **result,double **mat1,
+		double **mat2,unsigned int m,unsigned int n){
 
 	for(int i = 0; i < m; i++){
 		for(int j = 0; j < n; j++){
@@ -124,9 +106,6 @@ void elementwise_matrix_multiplication(
 
 
 
-
-
-
 void scale_vector_by_factor(double* v, double scale_factor, unsigned int len){
 	for(int i = 0; i < len; i++){
 		v[i] = v[i] * scale_factor;
@@ -134,30 +113,21 @@ void scale_vector_by_factor(double* v, double scale_factor, unsigned int len){
 }
 
 
-double vector_norm(
-	    double *v1,
-	    unsigned int len
-	   )
-{
+double vector_norm(double *v1,unsigned int len){
 	double sum = 0;
 	for(int i = 0; i < len; i++){
 		sum += v1[i] * v1[i];
 	}
-	
     	return sqrt(sum);
 }
 
 
-void normalize_vector(
-		 double *v1,
-		 unsigned int len
-		){
+void normalize_vector(double *v1,unsigned int len){
 	double norm = vector_norm(v1, len);
 	scale_vector_by_factor(v1, 1/norm, len);
 }
 
 double average(double *v1,unsigned int len ){
-
 	double sum = 0;
 	for(int i = 0; i < len; i++){
 		sum += v1[i];
@@ -243,4 +213,3 @@ double* create_linspace(double start, double end, int num_points){
 
 	return linspace;	
 }
-
