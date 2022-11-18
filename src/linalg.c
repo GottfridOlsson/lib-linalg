@@ -186,7 +186,7 @@ void print_matrix_to_file(char* filepath, char* header, double** matrix,
 	}
 	
 	fclose(file);
-	printf("Sucessfully printed data to file: %s\n", filepath);
+	printf("Sucessfully printed matrix to file: %s\n", filepath);
 }
 
 
@@ -199,8 +199,61 @@ void print_vector_to_file(char* filepath, char* header, double* vector,
 	}
 
 	fclose(file);
-	printf("Sucessfully printed data to file: %s\n", filepath);
+	printf("Sucessfully printed vector to file: %s\n", filepath);
 }
+
+
+
+double get_max_value_of_vector(double* vector, int len){
+	double max = vector[0];
+	
+	for(int i = 1; i < len; i++){
+		if(vector[i] > max){
+			max = vector[i];
+		}
+	}
+	return max;
+}
+
+void print_vectors_as_columns_to_file(char* filepath, char* header, double** vector_of_vectors,
+										int num_vectors, int* len_vectors) {
+	FILE* file = fopen(filepath, "w");
+	fprintf(file, "%s\n", header);
+	int num_cols = num_vectors;
+	int* len_cols = len_vectors;
+
+	for(int row_i = 0; row_i < get_max_value_of_vector(len_cols); row_i++){ //rows
+		for(int col_i = 0; col_i < num_cols; col_i++){  //cols
+
+			if(col_i != num_cols - 1){
+
+				if(row_i < len_cols[col_i]){ //within vector_i's length; print its value
+
+					fprintf(file, "%.8f, ", vector_of_vector[col_i][row_i]);
+
+				}else{// = past vector_i's length and not last column
+					printf(file, ", ");
+				}
+
+			}else{ // = element of last column, break line
+
+				if(row_i < len_cols[col_i]){ //within vector_i's length
+
+					fprintf(file, "%.8f\n", vector_of_vector[col_i][row_i]);
+
+				}else{// = past vector_i's length and last column, break line
+					printf(file, "\n");
+				}
+			}
+		}
+	}
+
+	fclose(file);
+	printf("Sucessfully printed vector of vectors to file: %s\n", filepath);
+}
+
+
+
 
 
 double* create_linspace(double start, double end, int num_points){
