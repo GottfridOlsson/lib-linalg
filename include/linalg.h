@@ -131,6 +131,6 @@ void print_vector_to_file(char* filepath, char* header, double* vector,
 
 double* create_linspace(double start, double end, int num_points);
 
-double double get_max_value_of_vector(double* vector, int len);
+double get_max_value_of_vector(double* vector, int len);
 
 void print_vectors_as_columns_to_file(char* filepath, char* header, double** vector_of_vectors, int num_vectors, int* len_vectors);
