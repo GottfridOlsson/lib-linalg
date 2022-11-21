@@ -131,4 +131,11 @@ void print_vector_to_file(char* filepath, char* header, double* vector,
 
 double* create_linspace(double start, double end, int num_points);
 
+double get_max_value_of_vector(double* vector, int len);
 
+void print_vectors_as_columns_to_file(char* filepath, char* header, double** vector_of_vectors, int num_vectors, int* len_vectors);
+
+double** create_transpose_of_matrix(double**, int, int);
+
+double** create_matrix_with_inserted_column(double** matrix, double* vector,
+								int rows, int cols, int col_insert_index);

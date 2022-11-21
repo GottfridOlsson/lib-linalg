@@ -186,7 +186,7 @@ void print_matrix_to_file(char* filepath, char* header, double** matrix,
 	}
 	
 	fclose(file);
-	printf("Sucessfully printed data to file: %s\n", filepath);
+	printf("Sucessfully printed matrix to file: %s\n", filepath);
 }
 
 
@@ -199,8 +199,102 @@ void print_vector_to_file(char* filepath, char* header, double* vector,
 	}
 
 	fclose(file);
-	printf("Sucessfully printed data to file: %s\n", filepath);
+	printf("Sucessfully printed vector to file: %s\n", filepath);
 }
+
+
+
+double get_max_value_of_vector(double* vector, int len){
+	double max = vector[0];
+	
+	for(int i = 1; i < len; i++){
+		if(vector[i] > max){
+			max = vector[i];
+		}
+	}
+	return max;
+}
+
+int get_max_value_of_int_vector(int* vector, int len){
+	int max = vector[0];
+	
+	for(int i = 1; i < len; i++){
+		if(vector[i] > max){
+			max = vector[i];
+		}
+	}
+	return max;
+}
+
+double** create_matrix_with_inserted_column(double** matrix, double* vector, 
+								int rows, int cols, int col_insert_index){
+	double** result = create_matrix(rows, cols+1);
+
+	for(int j = 0; j < col_insert_index; j++){
+		for(int i = 0; i < rows; i++){
+			result[i][j] = matrix[i][j];
+		}
+	}
+
+	// j == col_insert_index
+	
+	for(int i = 0; i < rows; i++){
+		result[i][col_insert_index] = vector[i];
+	}	
+
+
+	for(int j = col_insert_index; j < cols; j++){
+		for(int i = 0; i < rows; i++){
+			result[i][j+1] = matrix[i][j];
+		}
+	}
+
+	return result;
+}
+
+
+void print_vectors_as_columns_to_file(char* filepath, char* header,
+				double** vector_of_vectors, int num_vectors, int* len_vectors){
+	FILE* file = fopen(filepath, "w");
+	fprintf(file, "%s\n", header);
+	
+	int num_cols  = num_vectors;
+	int* len_cols = len_vectors;
+
+	int max_rows = get_max_value_of_int_vector(len_cols, num_vectors);
+	
+	for(int row_i = 0; row_i < max_rows; row_i++){ //rows
+		for(int col_i = 0; col_i < num_cols; col_i++){  //cols
+
+			if(col_i != num_cols - 1){
+
+				if(row_i < len_cols[col_i]){ //within vector_i's length; print
+
+					fprintf(file, "%.8f, ", vector_of_vectors[col_i][row_i]);
+
+				}else{// = past vector_i's length and not last column
+					fprintf(file, ", ");
+				}
+
+			}else{ // = element of last column, break line
+
+				if(row_i < len_cols[col_i]){ //within vector_i's length
+
+					fprintf(file, "%.8f\n", vector_of_vectors[col_i][row_i]);
+
+				}else{// = past vector_i's length and last column, break line
+					fprintf(file, "\n");
+				}
+			}
+		}
+	}
+
+	fclose(file);
+	printf("Sucessfully printed vector of vectors to file: %s\n", filepath);
+}
+
+
+
 
 
 double* create_linspace(double start, double end, int num_points){
@@ -214,3 +308,14 @@ double* create_linspace(double start, double end, int num_points){
 	return linspace;	
 }
 
+
+double** create_transpose_of_matrix(double** matrix,
+									 int initial_rows, int initial_cols){
+	double** transpose = create_matrix(initial_cols, initial_rows);
+	for(int i = 0; i < initial_rows; i++){
+		for(int j = 0; j < initial_cols; j++){
+			transpose[j][i] = matrix[i][j];
+		}
+	}
+	return transpose;
+}
