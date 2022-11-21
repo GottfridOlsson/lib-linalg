@@ -91,12 +91,9 @@ START_TEST(test_matrix_multiplication)
     double **result_array = NULL;
     double **matrix_A = NULL;
     double **matrix_B = NULL;
-    create_2D_array(&result_array,
-		    ARRAY_SIZE_N, ARRAY_SIZE_N);
-    create_2D_array(&matrix_A,
-		    ARRAY_SIZE_N, ARRAY_SIZE_M);
-    create_2D_array(&matrix_B,
-		    ARRAY_SIZE_M, ARRAY_SIZE_N);
+    result_array = create_matrix(ARRAY_SIZE_N, ARRAY_SIZE_N);
+    matrix_A = create_matrix(ARRAY_SIZE_N, ARRAY_SIZE_M);
+    matrix_B = create_matrix(ARRAY_SIZE_M, ARRAY_SIZE_N);
     for(int i = 0; i < ARRAY_SIZE_N; ++i){
 	for(int j = 0; j < ARRAY_SIZE_M; ++j){
 	    matrix_A[i][j] = i;
@@ -132,9 +129,9 @@ START_TEST(test_matrix_multiplication)
     ck_assert_double_eq_tol(result_array[3][2], 18.f, 1e-6);
     ck_assert_double_eq_tol(result_array[3][3], 27.f, 1e-6);
     
-    destroy_2D_array(result_array, ARRAY_SIZE_N); result_array = NULL;
-    destroy_2D_array(matrix_A, ARRAY_SIZE_N); matrix_A = NULL;
-    destroy_2D_array(matrix_B, ARRAY_SIZE_M); matrix_B = NULL;
+    destroy_matrix(result_array, ARRAY_SIZE_N); result_array = NULL;
+    destroy_matrix(matrix_A, ARRAY_SIZE_N); matrix_A = NULL;
+    destroy_matrix(matrix_B, ARRAY_SIZE_M); matrix_B = NULL;
 }
 
 START_TEST(test_vector_length)

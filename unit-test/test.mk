@@ -7,8 +7,10 @@ CFLAGS += \
 	-fno-omit-frame-pointer \
 	-Iunit-test/include/ \
 	-O0
+
 LIB += \
-     -lcheck
+     -lcheck \
+	 -llinalg
 
 
 test: obj run-test
