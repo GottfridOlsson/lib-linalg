@@ -31,12 +31,12 @@ obj:
 
 #obj/%.o: src/%.c
 #	$(CC) -MMD -c $(CFLAGS) $< -o $@
-#	$(CC) $@ -shared -o lib/$*.so $(LIBS)
-#
+#	$(CC) $@ -shared -o lib/$*.so
 
 src/%:
-	$(CC) $(CFLAGS) -c src/$*.c -o obj/$*.o $(LIBS)
+	$(CC) $(CFLAGS) -c src/$*.c -o obj/$*.o
 	$(CC) obj/$*.o -shared -o lib/lib$*.so $(LIBS)
+	$(CC) -dynamiclib obj/$*.o -o lib/lib$*.dylib $(LIBS)
 
 clean:
 	find -iname "*.o" -exec rm {} \;

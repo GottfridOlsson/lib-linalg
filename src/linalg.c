@@ -213,3 +213,4 @@ double* create_linspace(double start, double end, int num_points){
 
 	return linspace;	
 }
+
