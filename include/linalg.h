@@ -139,3 +139,14 @@ double** create_transpose_of_matrix(double**, int, int);
 
 double** create_matrix_with_inserted_column(double** matrix, double* vector,
 								int rows, int cols, int col_insert_index);
+
+
+void scale_matrix_by_factor(double** mat, double factor, int rows,int cols);
+void add_scalar_to_matrix(double** mat, double scalar, int rows, int cols);
+double** create_random_uniform_matrix(int rows, int cols, int seed);
+void print_vector(double* a, size_t len);
+void print_matrix(double** a, size_t rows, size_t cols);
+
+void elementwise_matrix_addition(double**,double**,double**, int, int);
+void add_scaled_matrix_to_matrix(double **result, double **mat,
+		double **mat_to_scale, double factor, int m, int n);

@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+#include <gsl/gsl_rng.h>
 #include "linalg.h"
 
 
@@ -104,6 +104,32 @@ void elementwise_matrix_multiplication(double **result,double **mat1,
 	}
 }
 
+void elementwise_matrix_addition(double **result,double **mat1,
+		double **mat2,int m, int n){
+	for(int i = 0; i < m; i++){
+		for(int j = 0; j < n; j++){
+			result[i][j] = mat1[i][j] + mat2[i][j];
+		}
+	}
+}
+
+void scale_matrix_by_factor(double** mat, double factor, int rows,int cols){
+	for(int i = 0; i < rows; i++){
+		for(int j = 0; j < cols; j++){
+			mat[i][j] *= factor;
+		}
+	}
+}
+
+void add_scalar_to_matrix(double** mat, double scalar, int rows, int cols){
+	for(int i = 0; i < rows; i++){
+		for(int j = 0; j < cols; j++){
+			mat[i][j] += scalar;
+		}
+	}
+}
+
+
 
 
 void scale_vector_by_factor(double* v, double scale_factor, unsigned int len){
@@ -111,6 +137,7 @@ void scale_vector_by_factor(double* v, double scale_factor, unsigned int len){
 		v[i] = v[i] * scale_factor;
 	}
 }
+
 
 
 double vector_norm(double *v1,unsigned int len){
@@ -318,4 +345,57 @@ double** create_transpose_of_matrix(double** matrix,
 		}
 	}
 	return transpose;
+}
+
+
+
+double** create_random_uniform_matrix(int rows, int cols, int seed){
+
+	double** matrix = create_matrix(rows, cols);	
+	gsl_rng * r;
+	r = gsl_rng_alloc(gsl_rng_default);
+	gsl_rng_set(r, seed);
+
+	for(int i = 0; i < rows; i++){
+		for(int j = 0; j < cols; j++){
+			matrix[i][j] = gsl_rng_uniform(r);
+		}
+	}
+
+	gsl_rng_free(r);
+	return matrix;
+}
+
+
+
+void print_vector(double* a, size_t len){
+	printf("[");
+	for(int ix = 0; ix < len; ix++){
+		if(ix != len - 1){
+        		printf("%f, ", a[ix]);
+		} else {
+        		printf("%f", a[ix]);
+		}
+	}
+	printf("]\n");
+}
+
+
+void print_matrix(double** a, size_t rows, size_t cols){
+	printf("[\n");
+	for(int row_i = 0; row_i < rows; row_i++){
+		print_vector(a[row_i], cols);
+	}
+	printf("]\n");
+}
+
+
+void add_scaled_matrix_to_matrix(double **result, double **mat,
+		double **mat_to_scale, double factor, int m, int n){
+	
+	for(int i = 0; i < m; i++){
+		for(int j = 0; j < n; j++){
+			result[i][j] = mat[i][j] + factor*mat_to_scale[i][j];
+		}
+	}
 }
