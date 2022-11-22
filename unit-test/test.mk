@@ -10,7 +10,11 @@ CFLAGS += \
 
 LIB += \
      -lcheck \
-	 -llinalg
+	 -lgsl \
+	 -lgslcblas
+
+OBJ += \
+	obj/linalg.o
 
 
 test: obj run-test

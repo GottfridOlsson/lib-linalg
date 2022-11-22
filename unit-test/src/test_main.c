@@ -168,8 +168,8 @@ START_TEST(test_average_and_std)
     for(int i = 0; i < SIZE; i++){
 	v[i] = 0.01*i;
     }
-    double v_average = average(v, SIZE);
-    double v_std = standard_deviation(v, SIZE);
+    double v_average = vector_average(v, SIZE);
+    double v_std = vector_standard_deviation(v, SIZE);
     ck_assert_double_eq_tol(v_std, 0.011180339f, 1e-6);
     ck_assert_double_eq_tol(v_average, 0.015f, 1e-6);
     free(v); v = NULL;
