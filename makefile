@@ -12,7 +12,9 @@ CFLAGS_OPT = \
 	     -march=native
 
 LIBS = \
-      -lm
+    -lm \
+	-lgsl \
+	-lgslcblas
 
 
 ifeq ($(MAKECMDGOALS),test)
