@@ -301,17 +301,17 @@ int get_max_value_of_int_vector(int* vector, int len){
 
 
 void print_vectors_as_columns_to_file(char* filepath, char* header,
-		double** vector_of_vectors, int num_vectors, int* len_vectors){
+		double** vector_of_vectors, int n_vectors, int* len_vectors){
 	FILE* file = fopen(filepath, "w");
 	fprintf(file, "%s\n", header);
 	
-	int num_cols  = num_vectors;
+	int  n_cols   = n_vectors;
 	int* len_cols = len_vectors;
-	int max_rows = get_max_value_of_int_vector(len_cols, num_vectors);
+	int max_rows = get_max_value_of_int_vector(len_cols, n_cols);
 	
 	for(int row_i = 0; row_i < max_rows; row_i++){ //rows
-		for(int col_i = 0; col_i < num_cols; col_i++){  //cols
-			if(col_i != num_cols - 1){
+		for(int col_i = 0; col_i < n_cols; col_i++){  //cols
+			if(col_i != n_cols - 1){
 				if(row_i < len_cols[col_i]){ //within vector_i's length; print
 					fprintf(file, "%.8f, ", vector_of_vectors[col_i][row_i]);
 				} else {// = past vector_i's length and not last column

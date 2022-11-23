@@ -6,8 +6,7 @@
  * REMEMBER TO FREE with destroy_vector.
  *
  * **********************************************/
-double*
-create_vector(
+double* create_vector(
 	size_t len
 );
 
@@ -18,8 +17,7 @@ create_vector(
  * REMEMBER TO FREE with destroy_vector.
  *
  * **********************************************/
-double* 
-create_linspace(
+double* create_linspace(
 	double start, 
 	double end, 
 	size_t n_points
@@ -30,8 +28,7 @@ create_linspace(
  * Free memory of vector created by create_vector
  *
  * **********************************************/
-void
-destroy_vector(
+void destroy_vector(
 	double *vector
 );
 
@@ -41,8 +38,7 @@ destroy_vector(
  * given factor.
  * 
  * **********************************************/
-void
-scale_vector_by_factor(
+void scale_vector_by_factor(
 	double* v, 
 	double scale_factor, 
 	size_t len
@@ -54,8 +50,7 @@ scale_vector_by_factor(
  * results is stored in res
  *
  * **********************************************/
-void 
-elementwise_addition(
+void elementwise_addition(
 	double *res,
 	double *v1,
 	double *v2,
@@ -69,8 +64,7 @@ elementwise_addition(
  * results is stored in res
  *
  * **********************************************/
-void
-elementwise_multiplication(
+void elementwise_multiplication(
 	double *res,
 	double *v1,
 	double *v2,
@@ -84,8 +78,7 @@ elementwise_multiplication(
  * v1 and v2
  *
  * **********************************************/
-double
-dot_product(
+double dot_product(
 	double *v1,
 	double *v2,
 	size_t len
@@ -96,8 +89,7 @@ dot_product(
  * Computes Euclidean norm (2-norm) of vector.
  * 
  * **********************************************/
-double
-vector_norm(
+double vector_norm(
 	double *v1,
 	size_t len
 );
@@ -107,8 +99,7 @@ vector_norm(
  * Normalizes a vector to have 2-norm equal to 1.
  * 
  * **********************************************/
-void
-normalize_vector(
+void normalize_vector(
 	double *v1,
 	size_t len
 );
@@ -118,8 +109,7 @@ normalize_vector(
  * Returns Euclidean distance between v1 and v2.
  * 
  * **********************************************/
-double
-distance_between_vectors(
+double distance_between_vectors(
 	double *v1,
 	double *v2,
 	size_t len
@@ -130,8 +120,7 @@ distance_between_vectors(
  * Compute average of values in vector.
  * 
  * **********************************************/
-double
-vector_average(
+double vector_average(
 	double *v1,
 	size_t len
 );
@@ -144,8 +133,7 @@ vector_average(
  * Note: this is NOT sample mean. 
  * 
  * **********************************************/
-double
-vector_standard_deviation(
+double vector_standard_deviation(
 	double *v1,
 	size_t len
 );
@@ -155,8 +143,7 @@ vector_standard_deviation(
  * Returns value of largest element in vector.
  * 
  * **********************************************/
-double 
-vector_max(
+double vector_max(
 	double* vector, 
 	size_t len
 );
@@ -168,8 +155,7 @@ vector_max(
  * REMEMBER TO FREE with destroy_matrix.
  *
  * **********************************************/
-double**
-create_matrix(
+double** create_matrix(
 	size_t rows,
 	size_t cols
 );
@@ -181,8 +167,7 @@ create_matrix(
  * REMEMBER TO FREE with destroy_matix.
  * 
  * **********************************************/
-double** 
-create_transpose_of_matrix(
+double** create_transpose_of_matrix(
 	double **mat, 
 	size_t initial_rows, 
 	size_t initial_cols);
@@ -201,8 +186,7 @@ create_transpose_of_matrix(
  * 
  * 
  * **********************************************/
-double** 
-create_matrix_with_inserted_column(
+double** create_matrix_with_inserted_column(
 	double** matrix, 
 	double* vector,
 	size_t rows, 
@@ -218,8 +202,7 @@ create_matrix_with_inserted_column(
  * REMEMBER TO FREE with destroy_matrix.
  * 
  * **********************************************/
-double** 
-create_random_uniform_matrix(
+double** create_random_uniform_matrix(
 	size_t rows, 
 	size_t cols, 
 	unsigned long int seed
@@ -232,8 +215,7 @@ create_random_uniform_matrix(
  * create_matrix
  *
  * **********************************************/
-void
-destroy_matrix(
+void destroy_matrix(
 	double **mat,
 	size_t rows
 );
@@ -243,8 +225,7 @@ destroy_matrix(
  * Adds a scalar to alla elements of matrix.
  * 
  * **********************************************/
-void 
-scale_matrix_by_factor(
+void scale_matrix_by_factor(
 	double **mat, 
 	double factor, 
 	size_t rows,
@@ -256,8 +237,7 @@ scale_matrix_by_factor(
  * Multiplies all elements of matrix by scalar.
  * 
  * **********************************************/
-void 
-add_scalar_to_matrix(
+void add_scalar_to_matrix(
 	double **mat, 
 	double scalar, 
 	size_t rows, 
@@ -271,8 +251,7 @@ add_scalar_to_matrix(
  * mat1, mat2 and res should be of same size.
  * 
  * **********************************************/
-void 
-elementwise_matrix_addition(
+void elementwise_matrix_addition(
 	double **res,
 	double **mat1,
 	double **mat2, 
@@ -287,8 +266,7 @@ elementwise_matrix_addition(
  * mat1, mat2 and res should be of same size.
  * 
  * **********************************************/
-void 
-elementwise_matrix_multiplication(
+void elementwise_matrix_multiplication(
 	double **res, 
 	double **mat1, 
 	double **mat2, 
@@ -304,8 +282,7 @@ elementwise_matrix_multiplication(
  * Matrices should have the same size.
  * 
  * **********************************************/
-void 
-add_scaled_matrix_to_matrix(
+void add_scaled_matrix_to_matrix(
 	double **res, 
 	double **mat,
 	double **mat_to_scale, 
@@ -321,8 +298,7 @@ add_scaled_matrix_to_matrix(
  * (n x p) and stores result in res (m x p)
  *
  * **********************************************/
-void
-matrix_multiplication(
+void matrix_multiplication(
 	double **res,
 	double **mat1,
 	double **mat2,
@@ -336,8 +312,7 @@ matrix_multiplication(
  * Print a vector to the terminal.
  * 
  * **********************************************/
-void 
-print_vector(
+void print_vector(
 	double* a, 
 	size_t len
 );
@@ -347,8 +322,7 @@ print_vector(
  * Print a matrix to the terminal.
  * 
  * **********************************************/
-void 
-print_matrix(
+void print_matrix(
 	double** a,
 	size_t rows,
 	size_t cols
@@ -367,8 +341,7 @@ print_matrix(
  * matrix: Matrix to write to file.
  * 
  * **********************************************/
-void 
-print_matrix_to_file(
+void print_matrix_to_file(
 	char *filepath, 
 	char *header, 
 	double **matrix,
@@ -389,8 +362,7 @@ print_matrix_to_file(
  * vector: vector to write to file.
  * 
  * **********************************************/
-void 
-print_vector_to_file(
+void print_vector_to_file(
 	char *filepath, 
 	char *header, 
 	double *vector,
@@ -410,8 +382,7 @@ print_vector_to_file(
  * the number of columns in the resulting CSV file
  * 
  * **********************************************/
-void 
-print_vectors_as_columns_to_file(
+void print_vectors_as_columns_to_file(
 	char* filepath,
 	char* header,
 	double** vector_of_vectors,
