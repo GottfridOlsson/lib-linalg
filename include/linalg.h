@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stddef.h> //for size_t
+
 /* **********************************************
  *
  * Create vector of zeros.
@@ -22,6 +24,23 @@ double* create_linspace(
 	double end, 
 	size_t n_points
 );
+
+
+
+/* **********************************************
+ *
+ * Create vector with random uniform numbers
+ * REMEMBER TO FREE with destroy_vector.
+ *
+ * **********************************************/
+
+double* create_random_uniform_vector(size_t len, unsigned long int seed);
+
+
+
+void evaluate_function_on_vector(double* output, double (*function)(double),
+								 double* x, int len);
+
 
 /* **********************************************
  *
@@ -149,6 +168,7 @@ double vector_standard_deviation(
 	size_t len
 );
 
+double vector_variance(double *v1, size_t len);
 /* **********************************************
  *
  * Returns value of largest element in vector.

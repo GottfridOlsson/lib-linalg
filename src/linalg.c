@@ -3,12 +3,13 @@
 //        File: linalg.c
 //      Author: VIKTOR LILJA, GOTTFRID OLSSON
 //     Created: 2022-11-15
-//     Updated: 2022-11-17
+//     Updated: 2022-11-28
 //       About: Contains functions used in linear
 //		algebra. Vectors, matrices and such.
 /*====================================================*/
 
 #include <stdio.h>
+#include <stddef.h>
 #include <stdlib.h>
 #include <math.h>
 #include <gsl/gsl_rng.h>
@@ -28,11 +29,32 @@ double* create_linspace(double start, double end, size_t num_points){
 	return linspace;	
 }
 
+double* create_random_uniform_vector(size_t len, unsigned long int seed){
+	double* vector = create_vector(len);	
+	gsl_rng * r;
+	r = gsl_rng_alloc(gsl_rng_default);
+	gsl_rng_set(r, seed);
+	for(int i = 0; i < len; i++){
+		vector[i] = gsl_rng_uniform(r);
+	}
+	gsl_rng_free(r);
+	return vector;
+}
+
+
+void evaluate_function_on_vector(double* output, double (*function)(double),
+								 double* x, int len){
+	for(int i = 0; i < len; i++){
+		output[i] = (*function)(x[i]); //dereference function
+		//since (*function) is the address of the function		
+	}
+}
+
 void destroy_vector(double *vector){
 	free(vector);
 }
 
-void copy_vector(double *v_source, double *v_dest, size_t len) {
+void copy_vector(double *v_dest, double *v_source, size_t len) {
 	for (int i = 0; i < len; i++) {
 		v_dest[i] = v_source[i];
 	}
@@ -107,6 +129,17 @@ double vector_standard_deviation(double *v1, size_t len){
 	}
     return sqrt(sum/len);
 }
+
+
+double vector_variance(double *v1, size_t len){
+	double sum = 0;
+	double mu = vector_average(v1, len);
+	for(int i = 0; i < len; i++){
+		sum += (v1[i] - mu) * (v1[i] - mu);
+	}
+    return sum/len;
+}
+
 
 double vector_max(double* vector, size_t len){
 	double max = vector[0];
