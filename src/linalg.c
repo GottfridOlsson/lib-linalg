@@ -5,7 +5,7 @@
 //     Created: 2022-11-15
 //     Updated: 2022-11-17
 //       About: Contains functions used in linear
-//				algebra. Vectors, matrices and such.
+//		algebra. Vectors, matrices and such.
 /*====================================================*/
 
 #include <stdio.h>
@@ -30,6 +30,12 @@ double* create_linspace(double start, double end, size_t num_points){
 
 void destroy_vector(double *vector){
 	free(vector);
+}
+
+void copy_vector(double *v_source, double *v_dest, size_t len) {
+	for (int i = 0; i < len; i++) {
+		v_dest[i] = v_source[i];
+	}
 }
 
 void scale_vector_by_factor(double *v, double scale_factor, size_t len){
@@ -264,9 +270,9 @@ void print_matrix_to_file(char* filepath, char* header, double** matrix,
 	for(int row_i = 0; row_i < rows; row_i++){
 		for(int col_j = 0; col_j < cols; col_j++){
 			if(col_j != cols - 1){
-				fprintf(file, "%.8f, ", matrix[row_i][col_j]);
+				fprintf(file, "%.8e, ", matrix[row_i][col_j]);
 			}else{
-				fprintf(file, "%.8f\n", matrix[row_i][col_j]);
+				fprintf(file, "%.8e\n", matrix[row_i][col_j]);
 			}
 		}
 	}
@@ -281,7 +287,7 @@ void print_vector_to_file(char* filepath, char* header, double* vector,
 	FILE* file = fopen(filepath, "w");
 	fprintf(file, "%s\n", header);
 	for(int index = 0; index < size; index++){
-		fprintf(file, "%.8f\n", vector[index]);
+		fprintf(file, "%.8e\n", vector[index]);
 	}
 
 	fclose(file);
@@ -313,13 +319,13 @@ void print_vectors_as_columns_to_file(char* filepath, char* header,
 		for(int col_i = 0; col_i < n_cols; col_i++){  //cols
 			if(col_i != n_cols - 1){
 				if(row_i < len_cols[col_i]){ //within vector_i's length; print
-					fprintf(file, "%.8f, ", vector_of_vectors[col_i][row_i]);
+					fprintf(file, "%.8e, ", vector_of_vectors[col_i][row_i]);
 				} else {// = past vector_i's length and not last column
 					fprintf(file, ", ");
 				}
 			} else { // = element of last column, break line
 				if(row_i < len_cols[col_i]){ //within vector_i's length
-					fprintf(file, "%.8f\n", vector_of_vectors[col_i][row_i]);
+					fprintf(file, "%.8e\n", vector_of_vectors[col_i][row_i]);
 				} else {// = past vector_i's length and last column, break line
 					fprintf(file, "\n");
 				}

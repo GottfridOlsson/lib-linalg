@@ -34,6 +34,17 @@ void destroy_vector(
 
 /* **********************************************
  *
+ * Copy elements of v_source to v_dest.
+ *
+ * **********************************************/
+void copy_vector(
+	double *v_source, 
+	double *v_dest, 
+	size_t len
+);
+
+/* **********************************************
+ *
  * Multiplies all elements of vector with a 
  * given factor.
  * 
