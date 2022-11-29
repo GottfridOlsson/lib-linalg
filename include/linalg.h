@@ -74,6 +74,8 @@ void scale_vector_by_factor(
 	size_t len
 );
 
+void add_scalar_to_vector(double *v, double scalar, size_t len);
+
 /* **********************************************
  *
  * Add v1 and v2 elementwise

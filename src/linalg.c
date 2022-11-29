@@ -66,6 +66,14 @@ void scale_vector_by_factor(double *v, double scale_factor, size_t len){
 	}
 }
 
+void add_scalar_to_vector(double *v, double scalar, size_t len){
+	for(int i = 0; i < len; i++){
+		v[i] = v[i] + scalar;
+	}
+}
+
+
+
 void elementwise_addition(double *res, double *v1, double *v2, size_t len){
 	for(int i = 0; i < len; i++){
 		res[i] = v1[i] + v2[i]; 
