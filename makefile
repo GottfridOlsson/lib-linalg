@@ -12,7 +12,7 @@ CFLAGS_OPT = \
 	     -march=native
 
 LIBS = \
-    -lm \
+	-lm \
 	-lgsl \
 	-lgslcblas
 
@@ -30,7 +30,7 @@ obj:
 	mkdir -p lib
 
 src/%:
-	$(CC) $(CFLAGS) -c src/$*.c -o obj/$*.o
+	$(CC) $(CFLAGS) -c src/$*.c -o obj/$*.o $(LIBS)
 	$(CC) obj/$*.o -shared -o lib/lib$*.so $(LIBS)
 #	$(CC) -dynamiclib obj/$*.o -o lib/lib$*.dylib $(LIBS)
 

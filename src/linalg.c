@@ -3,7 +3,7 @@
 //        File: linalg.c
 //      Author: VIKTOR LILJA, GOTTFRID OLSSON
 //     Created: 2022-11-15
-//     Updated: 2022-11-28
+//     Updated: 2022-12-01
 //       About: Contains functions used in linear
 //		algebra. Vectors, matrices and such.
 /*====================================================*/
@@ -319,7 +319,7 @@ void print_matrix_to_file(char* filepath, char* header, double** matrix,
 	}
 	
 	fclose(file);
-	printf("Sucessfully printed matrix to file: %s\n", filepath);
+	printf("\nSucessfully printed matrix to file: %s\n", filepath);
 }
 
 
@@ -332,7 +332,7 @@ void print_vector_to_file(char* filepath, char* header, double* vector,
 	}
 
 	fclose(file);
-	printf("Sucessfully printed vector to file: %s\n", filepath);
+	printf("\nSucessfully printed vector to file: %s\n", filepath);
 }
 
 // Helper for print_vectors_as_columns_to_file
@@ -375,7 +375,7 @@ void print_vectors_as_columns_to_file(char* filepath, char* header,
 	}
 
 	fclose(file);
-	printf("Sucessfully printed vector of vectors to file: %s\n", filepath);
+	printf("\nSucessfully printed vector of vectors to file: %s\n", filepath);
 }
 
 
