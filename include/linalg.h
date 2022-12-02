@@ -57,8 +57,8 @@ void destroy_vector(
  *
  * **********************************************/
 void copy_vector(
-	double *v_source, 
 	double *v_dest, 
+	double *v_source, 
 	size_t len
 );
 
