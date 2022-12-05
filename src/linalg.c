@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include <gsl/gsl_rng.h>
 #include "linalg.h"
@@ -378,4 +379,39 @@ void print_vectors_as_columns_to_file(char* filepath, char* header,
 	printf("\nSucessfully printed vector of vectors to file: %s\n", filepath);
 }
 
+void read_csv_to_matrix(
+	double** matrix, char* filepath, size_t rows, size_t cols
+) {
+	int  max_row_length = 1000;
+    char row_buffer[max_row_length];
 
+    FILE *file = fopen(filepath, "r");
+
+    // Skip comments (rows starting with #) and one extra row
+    // which is assumed to be header
+    while (!feof(file)) {
+        fgets(row_buffer, max_row_length, file);
+        if (strncmp(row_buffer, "#", sizeof(char)) != 0) break;
+    }
+
+    // Read all rows
+    int i_row = 0;
+    if (!feof(file)) fgets(row_buffer, max_row_length, file);
+    while (!feof(file) && i_row < rows) {
+
+        // Read all "," separated columns in row
+        int i_col = 0;
+        char *value_string = strtok(row_buffer, ",");
+        while(value_string != NULL && i_col < cols) {
+            matrix[i_row][i_col] = atof(value_string);
+            
+            value_string = strtok(NULL, ",");
+            i_col++;
+        }
+
+        fgets(row_buffer, max_row_length, file);
+        i_row++;
+    }
+
+    fclose(file);
+}

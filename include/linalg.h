@@ -422,3 +422,20 @@ void print_vectors_as_columns_to_file(
 	int num_vectors,
 	int* len_vectors
 );
+
+/* **********************************************
+ *
+ * Reads csv file to a matrix. Skips all rows
+ * starting with #, and one extra assumed to be 
+ * the header. If data is smaller than matrix,
+ * not all values of matrix will be changed.
+ * If data is larger than matrix, not all values
+ * will be stored.
+ * 
+ * **********************************************/
+void read_csv_to_matrix(
+	double** matrix, 
+	char* filepath, 
+	size_t rows, 
+	size_t cols
+);
