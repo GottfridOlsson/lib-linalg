@@ -14,6 +14,17 @@ double* create_vector(
 
 /* **********************************************
  *
+ * Create vector but does not guarantee it is
+ * filled with zeros.
+ * REMEMBER TO FREE with destroy_vector.
+ *
+ * **********************************************/
+double* create_vector_malloc(
+	size_t len
+);
+
+/* **********************************************
+ *
  * Create vector of equally spaced numbers
  * between start and end (endpoints included).
  * REMEMBER TO FREE with destroy_vector.
@@ -35,11 +46,6 @@ double* create_linspace(
  * **********************************************/
 
 double* create_random_uniform_vector(size_t len, unsigned long int seed);
-
-
-
-void evaluate_function_on_vector(double* output, double (*function)(double),
-								 double* x, int len);
 
 
 /* **********************************************
@@ -64,6 +70,19 @@ void copy_vector(
 
 /* **********************************************
  *
+ * Copy elements form column col_index in matrix
+ * to a vector.
+ *
+ * **********************************************/
+void copy_column_to_vector(
+	double* vector, 
+	double** matrix, 
+	int col_index, 
+	size_t len
+);
+
+/* **********************************************
+ *
  * Multiplies all elements of vector with a 
  * given factor.
  * 
@@ -74,7 +93,31 @@ void scale_vector_by_factor(
 	size_t len
 );
 
-void add_scalar_to_vector(double *v, double scalar, size_t len);
+
+/* **********************************************
+ *
+ * Adds a scalar to all elements of a vector
+ * 
+ * **********************************************/
+void add_scalar_to_vector(
+	double *v, 
+	double scalar, 
+	size_t len
+);
+
+
+/* **********************************************
+ *
+ * Evaluates a function elementwise on a vector
+ * and places the result in another vector
+ * 
+ * **********************************************/
+void evaluate_function_on_vector(
+	double* output, 
+	double (*function)(double),
+	double* x, 
+	size_t len
+);
 
 /* **********************************************
  *

@@ -18,7 +18,12 @@
 
 
 double* create_vector(size_t len){
-	double* vector = malloc(sizeof(double) * len);
+	double* vector = calloc(len, sizeof(double) * len);
+	return vector;
+}
+
+double* create_vector_malloc(size_t len){
+	double* vector = malloc(len * sizeof(double));
 	return vector;
 }
 
@@ -42,15 +47,6 @@ double* create_random_uniform_vector(size_t len, unsigned long int seed){
 	return vector;
 }
 
-
-void evaluate_function_on_vector(double* output, double (*function)(double),
-								 double* x, int len){
-	for(int i = 0; i < len; i++){
-		output[i] = (*function)(x[i]); //dereference function
-		//since (*function) is the address of the function		
-	}
-}
-
 void destroy_vector(double *vector){
 	free(vector);
 }
@@ -58,6 +54,13 @@ void destroy_vector(double *vector){
 void copy_vector(double *v_dest, double *v_source, size_t len) {
 	for (int i = 0; i < len; i++) {
 		v_dest[i] = v_source[i];
+	}
+}
+
+void copy_column_to_vector(double* vector, double** matrix, 
+		int col_index, size_t len) {
+	for (int i = 0; i < len; i++) {
+		vector[i] = matrix[i][col_index];
 	}
 }
 
@@ -73,7 +76,13 @@ void add_scalar_to_vector(double *v, double scalar, size_t len){
 	}
 }
 
-
+void evaluate_function_on_vector(double* v_output, double (*function)(double), 
+		double* v_input, size_t len) {
+	for(int i = 0; i < len; i++){
+		v_output[i] = (*function)(v_input[i]); //dereference function
+		//since (*function) is the address of the function		
+	}
+}
 
 void elementwise_addition(double *res, double *v1, double *v2, size_t len){
 	for(int i = 0; i < len; i++){
