@@ -132,6 +132,19 @@ void elementwise_addition(
 	size_t len
 );
 
+/* **********************************************
+ *
+ * Subtract v1 and v2 elementwise
+ * results is stored in result
+ *     result = v1 - v2
+ *
+ * **********************************************/
+void vector_subtraction(
+	double* result,
+	double* v1,
+	double* v2,
+	size_t len
+);
 
 /* **********************************************
  *

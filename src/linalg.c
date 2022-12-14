@@ -3,7 +3,7 @@
 //        File: linalg.c
 //      Author: VIKTOR LILJA, GOTTFRID OLSSON
 //     Created: 2022-11-15
-//     Updated: 2022-12-01
+//     Updated: 2022-12-14
 //       About: Contains functions used in linear
 //		algebra. Vectors, matrices and such.
 /*====================================================*/
@@ -119,6 +119,12 @@ void normalize_vector(double *v1, size_t len){
 	scale_vector_by_factor(v1, 1/norm, len);
 }
 
+
+void vector_subtraction(double* result, double* v1, double* v2, size_t len){
+	for(int i = 0; i < len; i++){
+		result[i] = v1[i] - v2[i];
+	}
+}
 
 double distance_between_vectors(double *v1, double *v2, size_t len) {
 	double sum_squared = 0, res = 0;
