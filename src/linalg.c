@@ -116,7 +116,7 @@ double vector_norm(double *v1, size_t len){
 
 void normalize_vector(double *v1, size_t len){
 	double norm = vector_norm(v1, len);
-	scale_vector_by_factor(v1, 1/norm, len);
+	scale_vector_by_factor(v1, 1.0/norm, len);
 }
 
 
